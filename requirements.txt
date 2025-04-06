@@ -1,8 +1,10 @@
+streamlit
 langchain
 langchain-community
-langchain_groq
-cassio
 sentence-transformers
-streamlit
+transformers
+pymupdf
 PyPDF2
-sentence-transformers
+tiktoken
+python-dotenv
+cassio
