@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Cassandra
 from langchain.chains import RetrievalQA
 from langchain_groq import ChatGroq
@@ -25,8 +25,7 @@ st.title("📄 Upload and Query Your PDFs (RAG (Astra DB) + ChatGroq (gemma2-9b-
 
 # Set up embedding and vectorstore
 embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
-    cache_folder="./hf_cache"
+    model_name="all-MiniLM-L6-v2"  # very lightweight and widely cached
 )
 
 vectorstore = Cassandra(
