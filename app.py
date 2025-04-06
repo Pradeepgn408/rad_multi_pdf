@@ -26,7 +26,7 @@ st.title("📄 Upload and Query Your PDFs (RAG (Astra DB) + ChatGroq (gemma2-9b-
 # Set up embedding and vectorstore
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
-    cache_folder="./hf_cache"  # Optional cache folder
+    cache_folder="./hf_cache"
 )
 
 vectorstore = Cassandra(
