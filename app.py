@@ -1,9 +1,9 @@
-
 import streamlit as st
 import os
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+#from langchain.embeddings import HuggingFaceEmbeddings
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Cassandra
 from langchain.chains import RetrievalQA
@@ -12,7 +12,6 @@ import cassio
 
 # Load environment variables
 load_dotenv()
-
 # Connect to Astra DB
 cassio.init(
     token=os.getenv("ASTRA_DB_APPLICATION_TOKEN"),
@@ -24,10 +23,7 @@ st.set_page_config(page_title="📄 PDF Query GenAI", layout="wide")
 st.title("📄 Upload and Query Your PDFs (RAG (Astra DB) + ChatGroq (gemma2-9b-it))")
 
 # Set up embedding and vectorstore
-embeddings = HuggingFaceEmbeddings(
-    model_name="all-MiniLM-L6-v2"  # very lightweight and widely cached
-)
-
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 vectorstore = Cassandra(
     embedding=embeddings,
     table_name="pdf_chunks",
